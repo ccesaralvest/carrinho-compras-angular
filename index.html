@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Carrinho de compras</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <script type="text/javascript" src="assets/js/angular.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <script type="text/javascript" src="assets/js/controllers/cartController.js"></script>
+</head>
+<!-- com o ng-app eu inicio o modulo do angular que irei utilizar, no caso o App -->
+<body ng-app="App">
+  <section class="lista-compras">
+    <section class="col-md-6">
+      <section class="panel panel-default">
+        <h1 class="panel-heading">Lista de compras</h1>
+        <!-- informando qual o controller que irei utilizar -->
+        <table class="table" ng-controller="CartController">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Preço</th>
+              <th>Quantidade</th>
+              <th>Total</th>
+              <th>Remover</th>
+            </tr>
+          </thead>
+          <!-- pegando um produto em products -->
+          <tbody ng-repeat="product in products">
+            <tr>
+              <!-- mostrando os produtos  -->
+              <td>{{product.name}}</td>
+              <td>R$ {{product.price}}</td>
+              <!-- ao informar um numero ele ja vai saber que é relacionado a quantidade de produtos -->
+              <td>
+                <input type="text" ng-model="product.qty">
+              </td>
+              <td>R$ {{product.price * product.qty }}</td>
+              <!-- ao clicar ele chama a funcao remove e passa o index que seria uma instancia do objeto products -->
+              <td>
+                <button ng-click="remove($index)">Remover</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>       
+      </section>
+    </section>
+  </section>
+</body>
+</html>
